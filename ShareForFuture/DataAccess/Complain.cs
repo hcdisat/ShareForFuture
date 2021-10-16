@@ -23,6 +23,10 @@
         public ComplainStatus ComplainStatus { get; set; } = new();
 
         public List<ComplainNote> Notes { get; set; } = new();
+
+        public List<ComplainAsignment> Asignments { get; set; } = new();
+
+        public List<ComplainImage> Images { get; set; } = new();
     }
 
     public class ComplainStatus : ModelBase

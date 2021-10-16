@@ -111,12 +111,145 @@ namespace ShareForFuture.DataAccess
             modelBuilder.Entity<DeviceAvailability>()
                 .HasOne(da => da.Status)
                 .WithMany(s => s.Availabilities)
-                .HasForeignKey(da => da.StatusId);    
+                .HasForeignKey(da => da.StatusId);
+
+            modelBuilder.Entity<DeviceCategory>()
+                .HasMany(c => c.DeviceCategories)
+                .WithOne(c => c.ParentCategory)
+                .HasForeignKey(c => c.ParentCategoryId)
+                .OnDelete(DeleteBehavior.NoAction);
             #endregion
 
+            #region Offerings
+            modelBuilder.Entity<Offering>()
+                   .HasOne(o => o.Borrower)
+                   .WithMany(b => b.BorrowerOfferings)
+                   .HasForeignKey(o => o.BorrowerId)
+                   .OnDelete(DeleteBehavior.NoAction);
 
+            modelBuilder.Entity<Offering>()
+                .HasOne(o => o.Lender)
+                .WithMany(b => b.LenderOfferings)
+                .HasForeignKey(o => o.LenderId)
+                .OnDelete(DeleteBehavior.NoAction);
 
-            // columns attributes
+            modelBuilder.Entity<Offering>()
+                .HasOne(o => o.Device)
+                .WithMany(d => d.Offerings)
+                .HasForeignKey(o => o.DeviceId);
+
+            modelBuilder.Entity<OfferingNotification>()
+                .HasOne(on => on.Offering)
+                .WithMany(o => o.Notifications)
+                .HasForeignKey(on => on.OfferingId);
+
+            modelBuilder.Entity<Offering>()
+                .HasMany(o => o.Statuses)
+                .WithMany(s => s.Offerings);
+
+            modelBuilder.Entity<OfferingNotificationType>()
+                .HasMany(sn => sn.Notifications)
+                .WithOne(n => n.Type)
+                .HasForeignKey(n => n.TypeId);
+
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.Borrower)
+                .WithMany(b => b.BorrowerReviews)
+                .HasForeignKey(r => r.BorrowerId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.Lender)
+                .WithMany(b => b.LenderReviews)
+                .HasForeignKey(r => r.LenderId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.Offering)
+                .WithMany(o => o.Reviews)
+                .HasForeignKey(r => r.OfferingId);
+            #endregion
+
+            #region Complains
+            modelBuilder.Entity<Complain>()
+                    .HasOne(c => c.Offering)
+                    .WithMany(o => o.Complains)
+                    .HasForeignKey(c => c.OfferingId);
+
+            modelBuilder.Entity<Complain>()
+                .HasOne(c => c.Filler)
+                .WithMany(f => f.FillerComplains)
+                .HasForeignKey(c => c.FillerId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Complain>()
+                .HasOne(c => c.AgainstTo)
+                .WithMany(a => a.AgainstToComplains)
+                .HasForeignKey(c => c.AgainsToId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Complain>()
+                .HasOne(c => c.ComplainStatus)
+                .WithMany(s => s.Complains)
+                .HasForeignKey(c => c.ComplainStatusId);
+
+            modelBuilder.Entity<Complain>()
+                .HasMany(c => c.Asignments)
+                .WithOne(a => a.Complain)
+                .HasForeignKey(a => a.ComplainId);
+
+            modelBuilder.Entity<Complain>()
+                .HasMany(c => c.Notes)
+                .WithOne(n => n.Complain)
+                .HasForeignKey(n => n.ComplainId);
+
+            modelBuilder.Entity<Complain>()
+                .HasMany(c => c.Images)
+                .WithOne(i => i.Complain)
+                .HasForeignKey(i => i.ComplainId);
+            #endregion
+
+            #region Columns Attributes
+            modelBuilder.Entity<User>()
+                   .HasIndex(u => u.Email)
+                   .IsUnique();
+
+            modelBuilder.Entity<EmailVerification>()
+                .HasIndex(ev => ev.Token)
+                .IsUnique();
+
+            modelBuilder.Entity<IdentityProvider>()
+                .HasIndex(ev => ev.Identifier)
+                .IsUnique();
+
+            modelBuilder.Entity<Group>()
+                .HasIndex(ev => ev.Name)
+                .IsUnique();
+
+            modelBuilder.Entity<DeviceCategory>()
+                .HasIndex(ev => ev.Name)
+                .IsUnique();
+
+            modelBuilder.Entity<DeviceStatus>()
+                .HasIndex(ev => ev.Name)
+                .IsUnique();
+
+            modelBuilder.Entity<DeviceAvailability>()
+               .HasIndex(ev => ev.Name)
+               .IsUnique();
+
+            modelBuilder.Entity<DeviceTag>()
+               .HasIndex(ev => ev.Name)
+               .IsUnique();
+
+            modelBuilder.Entity<OfferingNotificationType>()
+               .HasIndex(ev => ev.Name)
+               .IsUnique();
+
+            modelBuilder.Entity<OfferingStatus>()
+               .HasIndex(ev => ev.Name)
+               .IsUnique(); 
+            #endregion
         }
     }
 }

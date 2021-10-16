@@ -21,5 +21,9 @@
         public List<OfferingStatus> Statuses { get; set; } = new();
 
         public List<Review> Reviews { get; set; } = new();
+
+        public List<OfferingNotification> Notifications { get; set; } = new();
+
+        public List<Complain> Complains { get; internal set; } = new();
     }
 }

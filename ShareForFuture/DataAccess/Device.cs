@@ -25,6 +25,8 @@ namespace ShareForFuture.DataAccess
         public List<DeviceImage> Images { get; set; } = new();
 
         public List<DeviceTag> Tags { get; set; } = new();
+
+        public List<Offering> Offerings { get; set; } = new();
     }
 
     public enum Condition

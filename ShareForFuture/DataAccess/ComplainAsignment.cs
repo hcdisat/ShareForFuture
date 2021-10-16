@@ -8,9 +8,7 @@
 
         public int AssignedToId { get; set; }
 
-        public User AssignedBy { get; set; } = new();
-
-        public User AssignedTo { get; set; } = new();
+        public Complain Complain { get; set; } = new();
     }
 
     public class ComplainNote : ModelBase
