@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareForFuture", "ShareForFuture\ShareForFuture.csproj", "{338E7795-3076-4A89-918B-26C85FDAC2B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShareForFuture", "ShareForFuture\ShareForFuture.csproj", "{338E7795-3076-4A89-918B-26C85FDAC2B1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShareForFuture.Data", "ShareOfFuture.Data\ShareForFuture.Data.csproj", "{26F3CE11-3184-44F0-8479-40B1D502EF53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{338E7795-3076-4A89-918B-26C85FDAC2B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{338E7795-3076-4A89-918B-26C85FDAC2B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{338E7795-3076-4A89-918B-26C85FDAC2B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26F3CE11-3184-44F0-8479-40B1D502EF53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26F3CE11-3184-44F0-8479-40B1D502EF53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26F3CE11-3184-44F0-8479-40B1D502EF53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26F3CE11-3184-44F0-8479-40B1D502EF53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

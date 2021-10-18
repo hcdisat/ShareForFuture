@@ -1,11 +1,8 @@
-using ShareForFuture.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<S4FDbContext>((options) 
-    => options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
 
 builder.Services.AddControllers();
 
